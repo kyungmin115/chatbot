@@ -4,7 +4,7 @@ plugins {
     id 'io.spring.dependency-management' version '1.1.7'
 }
 
-group = 'com.example'
+group = 'com.chatbot'
 version = '0.0.1-SNAPSHOT'
 description = 'chatbot'
 
@@ -21,6 +21,13 @@ repositories {
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-webmvc'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    // OkHttp - HTTP 클라이언트
+    implementation 'com.squareup.okhttp3:okhttp:4.12.0'
+    // Gson - JSON 처리 라이브러리
+    implementation 'com.google.code.gson:gson:2.10.1'
+    // Lombok - 보일러플레이트 코드 감소
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-webmvc-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
