@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
 public class EmotionService {
 
     private static final String[] CRISIS_KEYWORDS = {
-            "자살", "죽고싶", "살기싫", "죽어버리", "자해"
+            "자살", "죽고싶어", "살기싫어", "죽어버리", "자해"
     };
 
     public String extractEmotion(String response) {

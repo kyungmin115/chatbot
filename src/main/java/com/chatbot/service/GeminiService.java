@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 @Service
 public class GeminiService {
@@ -17,9 +18,18 @@ public class GeminiService {
     @Value("${gemini.api.key}")
     private String apiKey;
 
-    private static final String API_URL = "https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash-latest:generateContent";
-    private final OkHttpClient client = new OkHttpClient();
+    private static final String API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent";
+    private OkHttpClient client = new OkHttpClient();
     private final Gson gson = new Gson();
+
+    public GeminiService() {
+        // 타임아웃 시간 늘리기
+        this.client = new OkHttpClient.Builder()
+                .connectTimeout(60, TimeUnit.SECONDS)
+                .readTimeout(60, TimeUnit.SECONDS)
+                .writeTimeout(60, TimeUnit.SECONDS)
+                .build();
+    }
 
 
     public String sendMessage(List<Message> history, String userMessage) throws IOException {
